@@ -1,0 +1,46 @@
+schema_version = "1"
+project_id = "local-demo"
+public_label = "RunReconcile local demo"
+
+[privacy]
+profile = "public-safe"
+
+[[watch]]
+id = "demo-workspace"
+root = "."
+allow = ["output/**"]
+max_file_bytes = 1048576
+
+[[checks]]
+id = "result-artifact"
+type = "artifact"
+public_label = "demo result artifact exists"
+path = "output/result.json"
+kind = "file"
+min_bytes = 2
+max_bytes = 1048576
+changed_since_snapshot = true
+record_sha256 = true
+
+[[checks]]
+id = "result-complete"
+type = "json"
+public_label = "demo result reports completion"
+path = "output/result.json"
+pointer = "/status"
+op = "eq"
+expected = "complete"
+changed_since_snapshot = true
+max_bytes = 1048576
+
+[[checks]]
+id = "delivery-correlated"
+type = "delivery"
+public_label = "mock delivery receipt is correlated to this run"
+path = "output/delivery.json"
+run_id_pointer = "/run_id"
+status_pointer = "/status"
+accepted_statuses = ["delivered"]
+receipt_id_pointer = "/receipt_id"
+changed_since_snapshot = true
+max_bytes = 1048576

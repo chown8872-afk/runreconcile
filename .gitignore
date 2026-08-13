@@ -1,0 +1,30 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments
+.venv/
+venv/
+
+# Coverage
+.coverage
+.coverage.*
+htmlcov/
+
+# Packaging
+build/
+dist/
+*.egg-info/
+
+# RunReconcile private/runtime output
+.runreconcile/
+examples/output/
+
+# Editors and operating systems
+.DS_Store
+.idea/
+.vscode/
+*.swp
