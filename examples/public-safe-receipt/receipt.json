@@ -1,0 +1,90 @@
+{
+  "boundary": {
+    "allowed_changes": 3,
+    "changed_entries": 3,
+    "unexpected_changes": 0
+  },
+  "checks": [
+    {
+      "code": "satisfied",
+      "evidence": {
+        "kind": "file",
+        "sha256": "2251e4ad30e1e147b0b2e7b46f51535127a5fd7223b44e11dea922e95d1f0619",
+        "size_bytes": 136
+      },
+      "id": "result-artifact",
+      "public_label": "demo result artifact exists",
+      "required": true,
+      "status": "pass",
+      "type": "artifact"
+    },
+    {
+      "code": "satisfied",
+      "evidence": {
+        "assertion_evaluated": true
+      },
+      "id": "result-complete",
+      "public_label": "demo result reports completion",
+      "required": true,
+      "status": "pass",
+      "type": "json"
+    },
+    {
+      "code": "satisfied",
+      "evidence": {
+        "accepted_status": true,
+        "receipt_id_present": true
+      },
+      "id": "delivery-correlated",
+      "public_label": "mock delivery receipt is correlated to this run",
+      "required": true,
+      "status": "pass",
+      "type": "delivery"
+    }
+  ],
+  "contract": {
+    "schema_version": "1",
+    "sha256": "1544d427addb1bae216332ab23ac8eb9fe48bf400c3c76192768b3172068e3bf"
+  },
+  "coverage": {
+    "causal_attribution": false,
+    "entry_count_after": 5,
+    "entry_count_before": 2,
+    "mode": "final_state_snapshot",
+    "runtime_write_tracing": false
+  },
+  "limitations": [
+    "Point-in-time final-state comparison; transient writes are not observed.",
+    "Changes during the observation window are not attributed to a specific process.",
+    "Only declared watch roots and post-run checks are covered.",
+    "The receipt is integrity-hashed but is not digitally signed."
+  ],
+  "privacy": {
+    "absolute_paths_included": false,
+    "profile": "public-safe",
+    "raw_values_included": false,
+    "unexpected_path_names_included": false
+  },
+  "project": {
+    "id": "local-demo",
+    "public_label": "RunReconcile local demo"
+  },
+  "run": {
+    "duration_ms": 95,
+    "finished_at": "2026-08-13T08:20:35.159102Z",
+    "id": "public-example-001",
+    "started_at": "2026-08-13T08:20:35.063986Z"
+  },
+  "schema_version": "runreconcile.receipt.v1",
+  "summary": {
+    "errors": 0,
+    "failed": 0,
+    "passed": 3,
+    "skipped": 0
+  },
+  "tool": {
+    "name": "runreconcile",
+    "version": "0.1.1"
+  },
+  "verdict": "ACCEPTED"
+}

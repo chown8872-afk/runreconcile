@@ -1,0 +1,53 @@
+name: Bug report
+description: Report a reproducible correctness, compatibility, or usability defect
+title: "[Bug]: "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not attach private baseline snapshots, secrets, customer identifiers,
+        sensitive paths, or undisclosed vulnerability details. Use the private
+        security reporting flow for security issues.
+  - type: input
+    id: version
+    attributes:
+      label: RunReconcile version
+      placeholder: "0.1.1"
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Operating system and Python version
+      placeholder: "Ubuntu 24.04, Python 3.13"
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Use synthetic paths and values only.
+      placeholder: Provide the smallest contract, filesystem shape, and commands needed to reproduce.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy check
+      options:
+        - label: I removed secrets, personal data, private baselines, and sensitive path names.
+          required: true

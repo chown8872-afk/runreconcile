@@ -1,0 +1,39 @@
+name: Feature request
+description: Propose a concrete improvement backed by a real use case
+title: "[Feature]: "
+labels: ["enhancement", "needs-triage"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem to solve
+      description: Describe the workflow problem, not only a preferred implementation.
+    validations:
+      required: true
+  - type: textarea
+    id: use_case
+    attributes:
+      label: Reproducible use case
+      description: Explain where RunReconcile is used and what evidence is currently missing.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+    validations:
+      required: true
+  - type: textarea
+    id: boundaries
+    attributes:
+      label: Security, privacy, and compatibility impact
+      description: Address new reads, writes, disclosure, execution, network, schema, and platform behavior.
+    validations:
+      required: true
+  - type: checkboxes
+    id: non_goals
+    attributes:
+      label: Project boundaries
+      options:
+        - label: This proposal does not turn RunReconcile into a command runner, sandbox, or telemetry service.
+          required: true

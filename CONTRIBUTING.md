@@ -22,7 +22,7 @@ explicitly changes them:
   names, and delivery receipt IDs.
 - Baselines are treated as private artifacts.
 - Receipt consumers require the completion marker and verify its JSON digest.
-- Python 3.9 through 3.12 on Linux and macOS remain supported for the 0.1.x line.
+- Python 3.9 through 3.14 on Linux and macOS remain supported for the 0.1.x line.
 
 Read [`THREAT_MODEL.md`](THREAT_MODEL.md) and [`PRIVACY.md`](PRIVACY.md) before
 changing contract parsing, path handling, snapshots, checks, verdicts, or
@@ -36,6 +36,7 @@ source .venv/bin/activate
 python -m pip install --upgrade pip
 python -m pip install -e .
 python -m unittest discover -s tests -v
+./scripts/run_demo.sh
 ```
 
 The test suite uses `unittest` and does not require a network service.
@@ -69,13 +70,15 @@ separately. Do not serialize actual or expected values merely for debugging.
 - [ ] The change is narrowly scoped and backward compatibility is explained.
 - [ ] Tests cover malformed and adversarial input, not only the happy path.
 - [ ] `python -m unittest discover -s tests -v` passes.
+- [ ] `./scripts/run_demo.sh` produces an `ACCEPTED` receipt.
 - [ ] No command-execution, network, or telemetry path was introduced.
 - [ ] New receipt fields were reviewed for public disclosure risk.
 - [ ] Baseline and path-containment implications were reviewed.
 - [ ] Freshness behavior cannot be satisfied by metadata-only changes.
 - [ ] Receipt publication remains exclusive and completion-marker based.
 - [ ] Documentation and `CHANGELOG.md` are current.
-- [ ] No generated baseline, receipt, secret, or example output is committed.
+- [ ] No private baseline, secret, sensitive output, or unreviewed receipt is
+      committed; any public-safe fixture has a verified completion digest.
 
 ## Security reports
 

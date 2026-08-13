@@ -1,5 +1,14 @@
 # RunReconcile
 
+[![CI](https://github.com/chown8872-afk/runreconcile/actions/workflows/ci.yml/badge.svg)](https://github.com/chown8872-afk/runreconcile/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/chown8872-afk/runreconcile/actions/workflows/codeql.yml/badge.svg)](https://github.com/chown8872-afk/runreconcile/actions/workflows/codeql.yml)
+[![GitHub release](https://img.shields.io/github/v/release/chown8872-afk/runreconcile?include_prereleases)](https://github.com/chown8872-afk/runreconcile/releases)
+[![Python 3.9–3.14](https://img.shields.io/badge/python-3.9%E2%80%933.14-blue)](https://github.com/chown8872-afk/runreconcile/actions/workflows/ci.yml)
+[![MIT license](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+
+**A local-only post-run automation verifier for final-state receipts and write
+boundaries.**
+
 RunReconcile produces a public-safe receipt for the final state left by an
 automation. It observes the declared workspace before and after a run, applies
 strict local checks, and reports whether the expected outcome and write
@@ -8,7 +17,7 @@ boundary were satisfied.
 RunReconcile does **not** run the automation. There is intentionally no command,
 shell, hook, plugin, scheduler, network client, or telemetry path in the tool.
 
-> Status: `0.1.0` is an early release. Review the threat model and keep baseline
+> Status: `0.1.1` is an early release. Review the threat model and keep baseline
 > snapshots private before using it in a sensitive workflow.
 
 ## Why this exists
@@ -31,11 +40,28 @@ The receipt reports evidence about the two observed states. It does not claim
 that a particular process caused a change or that no transient write occurred
 between snapshots.
 
-## Quick start
+## Install
 
-RunReconcile 0.1.x requires Python 3.9–3.12 on Linux or macOS. This first
+RunReconcile 0.1.x requires Python 3.9–3.14 on Linux or macOS. This first
 release relies on POSIX descriptor-relative filesystem operations so that path
 components cannot be swapped after validation; Windows is not yet supported.
+
+Install the latest tagged release directly from GitHub:
+
+```console
+python -m pip install "runreconcile @ git+https://github.com/chown8872-afk/runreconcile.git@v0.1.1"
+```
+
+For an isolated CLI install, use `pipx` with the same tagged source:
+
+```console
+pipx install "git+https://github.com/chown8872-afk/runreconcile.git@v0.1.1"
+```
+
+A tag-gated PyPI Trusted Publishing workflow is included. The PyPI project is
+not yet published, so this README does not claim a PyPI install path.
+
+For development from a checkout:
 
 ```console
 python -m venv .venv
@@ -43,6 +69,27 @@ source .venv/bin/activate
 python -m pip install --upgrade pip
 python -m pip install -e .
 ```
+
+## One-command local demo from a source checkout
+
+From the repository checkout used for the development install above, run the
+complete snapshot → local job → verify flow:
+
+```console
+./scripts/run_demo.sh
+```
+
+The script copies the demo into a temporary workspace, keeps the private
+baseline outside the watched tree, requires an `ACCEPTED` receipt, verifies the
+completion marker digest, and deletes the temporary data. Set
+`RUNRECONCILE_DEMO_KEEP=1` to retain the demo workspace for inspection.
+
+A generated, public-safe example is committed at
+[`examples/public-safe-receipt/`](examples/public-safe-receipt/). It contains
+only the three publishable receipt files; the private baseline is deliberately
+excluded.
+
+## Quick start by hand
 
 The included demo is entirely local. Its “delivery” file is a mock receipt; it
 does not contact a service.
@@ -244,8 +291,9 @@ python -m unittest discover -s tests -v
 ```
 
 See [`CONTRIBUTING.md`](CONTRIBUTING.md) for invariants and the pull request
-checklist. Security reports belong in the private channel described in
-[`SECURITY.md`](SECURITY.md).
+checklist, [`ROADMAP.md`](ROADMAP.md) for planned work, and
+[`GOVERNANCE.md`](GOVERNANCE.md) for the public maintenance process. Security
+reports belong in the private channel described in [`SECURITY.md`](SECURITY.md).
 
 ## License
 

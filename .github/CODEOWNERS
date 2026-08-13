@@ -1,0 +1,7 @@
+* @chown8872-afk
+
+# Security-sensitive implementation and policy surfaces.
+/src/runreconcile/ @chown8872-afk
+/THREAT_MODEL.md @chown8872-afk
+/PRIVACY.md @chown8872-afk
+/SECURITY.md @chown8872-afk

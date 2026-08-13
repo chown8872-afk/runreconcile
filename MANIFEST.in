@@ -1,0 +1,11 @@
+include CHANGELOG.md
+include CONTRIBUTING.md
+include GOVERNANCE.md
+include LICENSE
+include PRIVACY.md
+include README.md
+include ROADMAP.md
+include SECURITY.md
+include THREAT_MODEL.md
+recursive-include examples *.py *.toml *.json *.md
+recursive-include scripts *.sh
